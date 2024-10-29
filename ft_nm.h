@@ -1,8 +1,16 @@
-#ifndef
+#ifndef FT_NM_H
 #define FT_NM_H
 
 #define ELF32 1
 #define ELF64 2
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include <stdint.h>
+#include <errno.h>
+#include <fcntl.h>
 
 typedef struct {
     unsigned char e_ident[16];   // Identification ELF
@@ -44,7 +52,7 @@ typedef struct f_list
 {
     char        *file_name;
     int         file_fd;
-    char        *arch_type;
+    int         arch_type;
     
     Elf32_hdr   elf32_hdr;
     Elf64_hdr   elf64_hdr;
@@ -53,11 +61,11 @@ typedef struct f_list
 
 extern  FileInfo file_info;
 
-void    Init(void);
+void    Init(char *arg);
 void    Destroy(void);
-void    ExitError(char *type, char *info_str);
+void    ExitError(char *type);
 void    Parsing(void);
-
+void    PrintHeader(void);
 
 
 #endif

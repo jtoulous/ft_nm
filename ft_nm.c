@@ -1,7 +1,7 @@
 #include "ft_nm.h"
 
 
-Filesinfo  file_info;
+FileInfo  file_info;
 
 void    ft_nm(void)
 {

@@ -1,5 +1,5 @@
 NAME = ft_nm
-SRC = ft_nm.c
+SRC = ft_nm.c utils/tools.c utils/parsing.c utils/logs.c
 OBJ = $(SRC:.c=.o)
 CFLAGS = -Wall -Wextra -Werror -g
 

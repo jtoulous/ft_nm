@@ -1,3 +1,5 @@
+#include "../ft_nm.h"
+
 void    ExitError(char *type)
 {
     int exit_code = 0;
@@ -28,14 +30,14 @@ void    ExitError(char *type)
 }
 
 
-void    Init(arg)
+void    Init(char *arg)
 {
     file_info.file_name = strdup(arg);
     file_info.file_fd = -1;
-    file_info.arch_type = NULL;
+    file_info.arch_type = -1;
 
-    file_info.elf32_hdr.e_ident = NULL;
-    file_info.elf64_hdr.e_ident = NULL;
+    memset(file_info.elf32_hdr.e_ident, 0, sizeof(file_info.elf32_hdr.e_ident));
+    memset(file_info.elf64_hdr.e_ident, 0, sizeof(file_info.elf64_hdr.e_ident));
 }
 
 
@@ -47,10 +49,9 @@ void    Destroy(void)
     if (file_info.file_fd != -1)
         close(file_info.file_fd);
 
-    if (file_info.arch_type != NULL)
-        free(file_info.arch_type);
-
     file_info.file_name = NULL;
     file_info.file_fd = -1;
-    file_info.arch_type = NULL;
+    file_info.arch_type = -1;
+    memset(file_info.elf32_hdr.e_ident, 0, sizeof(file_info.elf32_hdr.e_ident));
+    memset(file_info.elf64_hdr.e_ident, 0, sizeof(file_info.elf64_hdr.e_ident));
 }
